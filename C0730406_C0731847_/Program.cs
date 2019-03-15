@@ -10,9 +10,16 @@ namespace C0730406_C0731847_
     {
         static void Main(string[] args)
         {
+            BankAccount ba = new BankAccount("Mr. Bryan Walton", 11.99);
 
+            ba.Credit(5.77);
+            ba.Debit(11.22);
+            Console.WriteLine("Currnet balance is ${0}", ba.Balance);
         }
     }
+}
+
+
     public class BankAccount
     {
         private string m_customerName;
@@ -23,10 +30,7 @@ namespace C0730406_C0731847_
 
         }
           
-        public BankAccount()
-        {
-
-        }
+       
          public BankAccount(string customerName, double balance)
         {
             m_customerName = customerName;
@@ -81,14 +85,5 @@ namespace C0730406_C0731847_
         {
             m_frozen = false;
         }
-        public static void Main()
-        {
-            BankAccount ba = new BankAccount("Mr. Bryan Walton", 11.99);
-
-            ba.Credit(5.77);
-            ba.Debit(11.22);
-            Console.WriteLine("Currnet balance is ${0}", ba.Balance);
-        }
-
+       
     }
-}
