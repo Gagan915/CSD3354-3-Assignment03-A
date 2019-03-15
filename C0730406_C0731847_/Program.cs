@@ -42,6 +42,22 @@ namespace C0730406_C0731847_
         {
             get { return m_balance; }
         }
+        public void Debit(double amount)
+        {
+            if (m_frozen)
+            {
+                throw new Exception("Account frozen");
+
+            }
+            if (amount>m_balance)
+            {
+                throw new ArgumentOutOfRangeException("amount");
+            }
+            if (amount < 0)
+            {
+                throw new ArgumentOutOfRangeException("amount");
+            }
+        }
 
     }
 }
