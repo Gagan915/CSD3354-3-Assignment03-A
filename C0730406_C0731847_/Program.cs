@@ -6,84 +6,169 @@ using System.Threading.Tasks;
 
 namespace C0730406_C0731847_
 {
+
     class Program
+
     {
+
         static void Main(string[] args)
+
         {
+
+
+
             BankAccount ba = new BankAccount("Mr. Bryan Walton", 11.99);
 
+
+
             ba.Credit(5.77);
+
             ba.Debit(11.22);
-            Console.WriteLine("Currnet balance is ${0}", ba.Balance);
+
+            Console.WriteLine("Current balance is ${0}", ba.Balance);
+
         }
+
     }
-}
+
 
 
     public class BankAccount
+
     {
-        private string m_customerName;
+
+        private string m_custonerName;
+
+
+
         private double m_balance;
+
+
+
         private bool m_frozen = false;
+
+
+
         private BankAccount()
+
         {
 
         }
-          
-       
-         public BankAccount(string customerName, double balance)
+
+
+
+        public BankAccount(string customerName, double balance)
+
         {
-            m_customerName = customerName;
+
+            m_custonerName = customerName;
+
+
+
             m_balance = balance;
+
         }
-         
+
         public string CustomerName
+
         {
-            get { return m_customerName; }
+
+            get { return m_custonerName; }
+
         }
+
+
 
         public double Balance
+
         {
+
             get { return m_balance; }
+
         }
+
         public void Debit(double amount)
+
         {
+
             if (m_frozen)
+
             {
+
                 throw new Exception("Account frozen");
 
             }
+
             if (amount > m_balance)
+
             {
+
                 throw new ArgumentOutOfRangeException("amount");
+
             }
+
             if (amount < 0)
+
             {
+
                 throw new ArgumentOutOfRangeException("amount");
+
             }
+
+
+
             m_balance += amount;
+
         }
+
+
 
         public void Credit(double amount)
+
         {
-            if(m_frozen)
+
+            if (m_frozen)
+
             {
+
                 throw new Exception("Account frozen");
+
             }
-            if(amount<0)
+
+            if (amount < 0)
+
             {
+
                 throw new ArgumentOutOfRangeException("amount");
+
             }
+
+
+
             m_balance += amount;
+
         }
 
-        private void FreezeAccount()
+        private void FreezoAccount()
+
         {
+
             m_frozen = true;
+
         }
+
         private void UnfreezeAccount()
+
         {
+
             m_frozen = false;
+
         }
-       
+
+
+
     }
+
+}
+
+
