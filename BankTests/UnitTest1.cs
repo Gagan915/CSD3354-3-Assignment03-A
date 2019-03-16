@@ -1,4 +1,5 @@
 ﻿using System;
+using C0730406_C0731847_;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 //C0731847
 //C0730406
@@ -11,22 +12,25 @@ namespace BankTests
         public void TestMethod1()
         {
         }
-    
-        //Arrange
+        public void Debit_WithValidAmount_UpdatesBalance()
 
-        double beginningBalance = 11.99;
+        {
 
-        double debitAmount = 4.55;
+            //Arrange
 
-        double expected = 7.44;
+            double beginningBalance = 11.99;
 
-        BankAccount account = new BankAccount("Mr. Harpuspam Singh Nanan\nMr. Sidharath Aggarwal", beginningBalance);
+            double debitAmount = 4.55;
+
+            double expected = 7.44;
+
+            BankAccount account = new BankAccount("Gagan, Manpreet", beginningBalance);
 
 
 
-        //Act
+            //Act
 
-        account.Debit(debitAmount);
+            account.Debit(debitAmount);
 
 
 
@@ -34,7 +38,14 @@ namespace BankTests
 
             double actual = account.Balance;
 
-        Assert.AreEqual(expected, actual, 0.0001, "Account nt debited correctly");
+            Assert.AreEqual(expected, actual, 0.0001, "Account nt debited correctly");
+
+        }
+
 
     }
+
+
+
+}
 }
