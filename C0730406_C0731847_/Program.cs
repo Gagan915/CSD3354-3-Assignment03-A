@@ -6,38 +6,15 @@ using System.Threading.Tasks;
 
 namespace C0730406_C0731847_
 {
-
-    class Program
-
-    {
-
-        static void Main(string[] args)
-
-        {
-
-
-
-            BankAccount ba = new BankAccount("Mr. Bryan Walton", 11.99);
-
-
-
-            ba.Credit(5.77);
-
-            ba.Debit(11.22);
-
-            Console.WriteLine("Current balance is ${0}", ba.Balance);
-
-        }
-
-    }
-
-
-
     public class BankAccount
 
     {
 
-        private string m_custonerName;
+        public const string DebitAmountExceedsBalanceMessage = "Debit amount exceeds balance";
+
+        public const string DebitAmountLessThanZeroMessage = "Debit amount is less than Zero";
+
+        private string m_customerName;
 
 
 
@@ -61,19 +38,19 @@ namespace C0730406_C0731847_
 
         {
 
-            m_custonerName = customerName;
-
-
+            m_customerName = customerName;
 
             m_balance = balance;
 
         }
 
+
+
         public string CustomerName
 
         {
 
-            get { return m_custonerName; }
+            get { return m_customerName; }
 
         }
 
@@ -87,37 +64,33 @@ namespace C0730406_C0731847_
 
         }
 
+
+
         public void Debit(double amount)
 
         {
-
-            if (m_frozen)
-
-            {
-
-                throw new Exception("Account frozen");
-
-            }
 
             if (amount > m_balance)
 
             {
 
-                throw new ArgumentOutOfRangeException("amount");
+                throw new ArgumentOutOfRangeException("amount", amount, DebitAmountExceedsBalanceMessage);
 
             }
+
+
 
             if (amount < 0)
 
             {
 
-                throw new ArgumentOutOfRangeException("amount");
+                throw new ArgumentOutOfRangeException("amount", amount, DebitAmountLessThanZeroMessage);
 
             }
 
 
 
-            m_balance += amount;
+            m_balance -= amount; // intentionally incorrect code
 
         }
 
@@ -135,6 +108,8 @@ namespace C0730406_C0731847_
 
             }
 
+
+
             if (amount < 0)
 
             {
@@ -149,13 +124,17 @@ namespace C0730406_C0731847_
 
         }
 
-        private void FreezoAccount()
+
+
+        private void FreezeAccount()
 
         {
 
             m_frozen = true;
 
         }
+
+
 
         private void UnfreezeAccount()
 
@@ -167,8 +146,27 @@ namespace C0730406_C0731847_
 
 
 
+        public static void Main()
+
+        {
+
+            BankAccount ba = new BankAccount("Mr. Bryan Walton", 11.99);
+
+
+
+            ba.Credit(5.77);
+
+            ba.Debit(11.22);
+
+            Console.WriteLine("Current balance is ${0}", ba.Balance);
+
+        }
+
     }
 
+
 }
+
+
 
 
